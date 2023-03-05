@@ -99,8 +99,6 @@ function App() {
         e.preventDefault();
         store.dispatch(addSt(25));
         setUsedStorage(`${store.getState().usedStorage}%`);
-
-        console.log(store.getState().usedStorage);
     };
 
     const removeStorage = e => {
@@ -111,8 +109,6 @@ function App() {
         } else {
             setUsedStorage(`14px`);
         }
-
-        console.log(store.getState().usedStorage);
     };
 
     // // // // // // // // // //
