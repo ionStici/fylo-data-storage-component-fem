@@ -1,0 +1,85 @@
+//
+
+.main {
+    padding: 127px 24px;
+}
+
+.bg {
+    position: fixed;
+    z-index: -5;
+    bottom: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-position: top;
+    background-size: cover;
+
+    &__color {
+        position: fixed;
+        z-index: -10;
+        left: 0;
+        top: 0;
+
+        width: 100vw;
+        height: 100vh;
+
+        background-color: var(--clr-very-dark-blue);
+    }
+
+    @media only screen and (min-width: 768px) {
+        height: 52.5%;
+    }
+}
+
+//
+
+.fylo {
+    background-color: var(--clr-dark-blue);
+    margin: 0 auto 16px auto;
+    border-radius: 10px 100px 10px 10px;
+    padding: 40px;
+    max-width: 350px;
+}
+
+.logo {
+    margin-bottom: 33px;
+}
+
+.iconBox {
+    display: flex;
+}
+
+.link,
+.link:link,
+.link:visited {
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background-color: var(--clr-very-dark-blue);
+
+    &:not(:last-child) {
+        margin-right: 16px;
+    }
+}
+
+//
+
+.bar {
+    background-color: var(--clr-dark-blue);
+    max-width: 540px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.message {
+    color: var(--clr-pale-blue);
+}
+
+//
