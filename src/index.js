@@ -53,50 +53,68 @@ function App() {
             ></div>
             <div className={styles.bg__color}></div>
 
-            <section className={styles.fylo}>
-                <img className={styles.logo} src={logo} alt="Logo" />
-                <div className={styles.iconBox}>
-                    <a
-                        className={styles.link}
-                        href="."
-                        onClick={handleIconClick}
-                    >
-                        <img
-                            className={styles.link__icon}
-                            src={iconDoc}
-                            alt=""
-                        />
-                    </a>
-                    <a
-                        className={styles.link}
-                        href="."
-                        onClick={handleIconClick}
-                    >
-                        <img
-                            className={styles.link__icon}
-                            src={iconFolder}
-                            alt=""
-                        />
-                    </a>
-                    <a
-                        className={styles.link}
-                        href="."
-                        onClick={handleIconClick}
-                    >
-                        <img
-                            className={styles.link__icon}
-                            src={iconUpload}
-                            alt=""
-                        />
-                    </a>
+            <div className={styles.wrapper}>
+                <div className={styles.fylo}>
+                    <img className={styles.logo} src={logo} alt="Logo" />
+                    <div className={styles.iconBox}>
+                        <a
+                            className={styles.link}
+                            href="."
+                            onClick={handleIconClick}
+                        >
+                            <img
+                                className={styles.link__icon}
+                                src={iconDoc}
+                                alt=""
+                            />
+                        </a>
+                        <a
+                            className={styles.link}
+                            href="."
+                            onClick={handleIconClick}
+                        >
+                            <img
+                                className={styles.link__icon}
+                                src={iconFolder}
+                                alt=""
+                            />
+                        </a>
+                        <a
+                            className={styles.link}
+                            href="."
+                            onClick={handleIconClick}
+                        >
+                            <img
+                                className={styles.link__icon}
+                                src={iconUpload}
+                                alt=""
+                            />
+                        </a>
+                    </div>
                 </div>
-            </section>
 
-            <section className={styles.bar}>
-                <p className={styles.message}>
-                    You’ve used <strong>815 GB</strong> of your storage
-                </p>
-            </section>
+                <div className={styles.barWrapper}>
+                    <p className={styles.text}>
+                        You’ve used <strong>815 GB</strong> of your storage
+                    </p>
+
+                    <div className={styles.barBox}>
+                        <div className={styles.bar}>
+                            <div className={styles.bar__circle}></div>
+                        </div>
+                    </div>
+
+                    <div className={styles.minmax}>
+                        <p className={styles.min}>0 gb</p>
+                        <p className={styles.max}>1000 gb</p>
+                    </div>
+
+                    <div className={styles.message}>
+                        <p className={styles.message__num}>185</p>
+                        <p className={styles.message__left}>gb left</p>
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }
