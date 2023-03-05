@@ -11,6 +11,48 @@ import iconDoc from './images/icon-document.svg';
 import iconFolder from './images/icon-folder.svg';
 import iconUpload from './images/icon-upload.svg';
 
+import { createStore } from 'redux';
+
+const addSt = add => ({ type: 'storage/addStorage', payload: add });
+const removeSt = remove => ({ type: 'storage/removeStorage', payload: remove });
+
+const initialState = { unit: '%', usedStorage: 81.5 };
+const storageReducer = function (state = initialState, action) {
+    switch (action.type) {
+        case 'storage/addStorage':
+            if (state.usedStorage < 99) {
+                return {
+                    ...state,
+                    usedStorage:
+                        state.usedStorage + (action.payload * 100) / 1000,
+                };
+            } else {
+                return {
+                    ...state,
+                    usedStorage: 100,
+                };
+            }
+
+        case 'storage/removeStorage':
+            if (state.usedStorage > 5) {
+                return {
+                    ...state,
+                    usedStorage:
+                        state.usedStorage - (action.payload * 100) / 1000,
+                };
+            } else {
+                return {
+                    ...state,
+                };
+            }
+
+        default:
+            return state;
+    }
+};
+
+const store = createStore(storageReducer);
+
 const imagesArray = [
     bgMobile,
     bgDesktop,
@@ -37,9 +79,43 @@ function App() {
         return () => mediaMatch.removeEventListener('change', handler);
     });
 
-    const handleIconClick = function (e) {
+    // // // // // // // // // //
+
+    const bar = React.useRef(null);
+
+    const [usedStorage, setUsedStorage] = useState('81.5%');
+
+    useEffect(() => {
+        setTimeout(() => (bar.current.style.width = usedStorage), 200);
+    });
+
+    const toggleAnimation = function (e) {
         e.preventDefault();
+        setUsedStorage('14px');
+        setTimeout(() => setUsedStorage('81.5%'), 500);
     };
+
+    const addStorage = e => {
+        e.preventDefault();
+        store.dispatch(addSt(25));
+        setUsedStorage(`${store.getState().usedStorage}%`);
+
+        console.log(store.getState().usedStorage);
+    };
+
+    const removeStorage = e => {
+        e.preventDefault();
+        store.dispatch(removeSt(25));
+        if (store.getState().usedStorage > 5) {
+            setUsedStorage(`${store.getState().usedStorage}%`);
+        } else {
+            setUsedStorage(`14px`);
+        }
+
+        console.log(store.getState().usedStorage);
+    };
+
+    // // // // // // // // // //
 
     return (
         <main className={styles.main}>
@@ -60,7 +136,7 @@ function App() {
                         <a
                             className={styles.link}
                             href="."
-                            onClick={handleIconClick}
+                            onClick={toggleAnimation}
                         >
                             <img
                                 className={styles.link__icon}
@@ -71,7 +147,7 @@ function App() {
                         <a
                             className={styles.link}
                             href="."
-                            onClick={handleIconClick}
+                            onClick={addStorage}
                         >
                             <img
                                 className={styles.link__icon}
@@ -82,7 +158,7 @@ function App() {
                         <a
                             className={styles.link}
                             href="."
-                            onClick={handleIconClick}
+                            onClick={removeStorage}
                         >
                             <img
                                 className={styles.link__icon}
@@ -99,7 +175,7 @@ function App() {
                     </p>
 
                     <div className={styles.barBox}>
-                        <div className={styles.bar}>
+                        <div className={styles.bar} ref={bar}>
                             <div className={styles.bar__circle}></div>
                         </div>
                     </div>
